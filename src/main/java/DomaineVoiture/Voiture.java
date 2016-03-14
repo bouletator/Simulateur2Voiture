@@ -17,8 +17,24 @@ public class Voiture extends Observable {
 	}
 
 	public void miseAJourPosition() {
-		miseAJourPositionX();
+		if(directionEnDegres == 90 || directionEnDegres == 270)
+			miseAJourPositionY();
+		else
+			miseAJourPositionX();
+
 		notificationObservateur();
+	}
+
+	private void miseAJourPositionY() {
+		if (directionEnDegres == 90)
+			y -= vitesseMetreSeconde;
+		else
+			y += vitesseMetreSeconde;
+
+		if (y > 1000)
+			y = 1000;
+		else if (y < 0)
+			y = 0;
 	}
 
 	private void miseAJourPositionX() {
@@ -70,5 +86,18 @@ public class Voiture extends Observable {
 	return directionEnDegres;
 	}
 
-	
+
+	public int getY() {
+		return y;
+	}
+
+	public void allerADroite() {
+		directionEnDegres += 90;
+		directionEnDegres = directionEnDegres%360;
+	}
+
+	public void allerAGauche() {
+		directionEnDegres += 270;
+		directionEnDegres = directionEnDegres%360;
+	}
 }
