@@ -7,7 +7,7 @@ public class Voiture extends Observable {
 	private int x;
 	private int y;
 	private int vitesseMetreSeconde;
-	private int directionEnDegres;
+	public int directionEnDegres;
 
 	public Voiture(int x, int y, int vitesse) {
 		this.x = x;
@@ -25,17 +25,24 @@ public class Voiture extends Observable {
 		notificationObservateur();
 	}
 
-	private void miseAJourPositionY() {
-		if (directionEnDegres == 90)
-			y -= vitesseMetreSeconde;
-		else
-			y += vitesseMetreSeconde;
+    private void miseAJourPositionY() {
+        if (directionEnDegres == 90) {
+            y += vitesseMetreSeconde;
 
-		if (y > 1000)
-			y = 1000;
-		else if (y < 0)
-			y = 0;
-	}
+
+        }
+        else {
+            if(directionEnDegres == 270) {
+                y -= vitesseMetreSeconde;
+
+            }
+        }
+
+        if (y > 1000)
+            y = 1000;
+        else if (y < 0)
+            y = 0;
+    }
 
 	private void miseAJourPositionX() {
 		if (directionEnDegres == 0)
