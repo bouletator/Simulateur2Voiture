@@ -3,19 +3,23 @@ package AppliSimu;
 
 import static org.junit.Assert.*;
 
+import DomaineVoiture.Voiture;
 import org.junit.Before;
 import org.junit.Test;
 
 public class TestTriangle {
 
+    private Voiture maVoiture;
+
 	@Before
 	public void setUp() throws Exception {
+        maVoiture = new Voiture(100, 50, 10);
 	}
 	
 	@Test
 	public void testConversionMetresPixels() {
 		
-		IHMVoiture monTriangle = new IHMVoiture();
+		IHMVoiture monTriangle = new IHMVoiture(maVoiture);
 		
 		int xPixels = monTriangle.calculerPositionPixels(110);
 		

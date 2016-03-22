@@ -21,7 +21,7 @@ public class IHMVoiture extends JFrame implements Observer{
     private int pixelXCourant=0;
     private int pixelYCourant=300;
 
-
+    //TODO : utiliser un observer de la voiture pour les bords
     private void initGraphique() {
         this.setTitle("Simulateur de Voiture");
         this.setSize(505, 505);
@@ -52,6 +52,7 @@ public class IHMVoiture extends JFrame implements Observer{
         this.maVoiture = null;
     }
 
+    //TODO: extraire la fonction dans conversion
     public int calculerPositionPixels(int xMetres) {
         return (int) (paramatreConversionMetresPixels*xMetres);
     }
@@ -91,5 +92,6 @@ public class IHMVoiture extends JFrame implements Observer{
         maCommandeVoiture.boutonAllerAGauche.setEnabled(true);
         contexteGraphique.fillRect(pixelXCourant, pixelYCourant, 15, 30);
     }
+
 
 }

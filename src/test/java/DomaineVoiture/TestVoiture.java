@@ -14,7 +14,8 @@ public class TestVoiture {
 	public void setUp(){
 		maVoiture = new Voiture (100, 50, 10);
 	}
-	
+
+    //TODO: bloc given when then
 	@Test
 	public void  testEvolutionXenFonctionVitesseSurUnTopSeconde() {
 		
@@ -84,7 +85,7 @@ public class TestVoiture {
 		maVoiture.allerADroite();
 		maVoiture.miseAJourPosition();
 		assertEquals(maVoiture.getX(), 100);
-		assertEquals(40,maVoiture.getY());
+		assertEquals(60,maVoiture.getY());
 	}
 
 	@Test
@@ -92,7 +93,7 @@ public class TestVoiture {
 		maVoiture.allerAGauche();
 		maVoiture.miseAJourPosition();
 		assertEquals(maVoiture.getX(), 100);
-		assertEquals(60,maVoiture.getY());
+		assertEquals(40,maVoiture.getY());
 	}
 
 	@Test
@@ -100,15 +101,41 @@ public class TestVoiture {
 		maVoiture.inverserDirection();
 		maVoiture.allerADroite();
 		maVoiture.miseAJourPosition();
+		assertEquals(40,maVoiture.getY());
+	}
+
+	@Test
+	public void testChangerSensEtAllerAGauche(){
+		maVoiture.inverserDirection();
+		maVoiture.allerAGauche();
+		maVoiture.miseAJourPosition();
 		assertEquals(60,maVoiture.getY());
 	}
 
 	@Test
-	public void testChangerSensEtAllerAGauche0(){
-		maVoiture.inverserDirection();
+	public void testLimitePositionHauteY(){
+		maVoiture.setVitesse(1000);
+		maVoiture.allerADroite();
+		maVoiture.miseAJourPosition();
+		assertEquals(1000,maVoiture.getY());
+	}
+
+	@Test
+	public void testLimitePositionBasseY(){
+		maVoiture.setVitesse(1000);
 		maVoiture.allerAGauche();
 		maVoiture.miseAJourPosition();
-		assertEquals(40,maVoiture.getY());
+		assertEquals(0,maVoiture.getY());
 	}
-	
+
+	@Test
+	public void testArretVoiture(){
+        int x=maVoiture.getX();
+        int y=maVoiture.getY();
+        maVoiture.arretervoiture();
+        maVoiture.miseAJourPosition();
+        assertEquals(x,maVoiture.getX());
+        assertEquals(y,maVoiture.getY());
+    }
+
 }

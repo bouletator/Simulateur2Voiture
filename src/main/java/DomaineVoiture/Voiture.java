@@ -28,14 +28,9 @@ public class Voiture extends Observable {
     private void miseAJourPositionY() {
         if (directionEnDegres == 90) {
             y += vitesseMetreSeconde;
-
-
         }
-        else {
-            if(directionEnDegres == 270) {
-                y -= vitesseMetreSeconde;
-
-            }
+        else if(directionEnDegres == 270) {
+			y -= vitesseMetreSeconde;
         }
 
         if (y > 1000)
@@ -106,5 +101,9 @@ public class Voiture extends Observable {
 	public void allerAGauche() {
 		directionEnDegres += 270;
 		directionEnDegres = directionEnDegres%360;
+	}
+
+	public void arretervoiture() {
+		vitesseMetreSeconde=0;
 	}
 }
