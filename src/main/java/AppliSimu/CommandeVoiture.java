@@ -1,10 +1,7 @@
 package AppliSimu;
 
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,7 +9,7 @@ import javax.swing.JPanel;
 
 import DomaineVoiture.Voiture;
 
-public class CommandeVoiture extends JPanel implements ActionListener, KeyListener {
+public class CommandeVoiture extends JPanel implements ActionListener,KeyListener{
 
     public JButton boutonAccelerer;
     public JButton boutonInverserDirection;
@@ -21,68 +18,79 @@ public class CommandeVoiture extends JPanel implements ActionListener, KeyListen
     private Voiture maVoiture;
 
 
-    public CommandeVoiture (JFrame fenetre, Voiture maVoiture) {
+    public CommandeVoiture (final JFrame fenetre, final Voiture maVoiture) {
 
         super();
+
         this.setLayout(new FlowLayout());
 
         boutonAccelerer = new JButton("Accelerer");
+
         boutonAccelerer.addActionListener(this);
+        boutonAccelerer.addKeyListener(this);
         this.add(boutonAccelerer);
 
         boutonInverserDirection = new JButton("Changer direction");
         boutonInverserDirection.addActionListener(this);
+        boutonInverserDirection.addKeyListener(this);
         this.add(boutonInverserDirection);
 
         boutonAllerADroite= new JButton("Droite");
         boutonAllerADroite.addActionListener(this);
+        boutonAllerADroite.addKeyListener(this);
         this.add(boutonAllerADroite);
 
         boutonAllerAGauche = new JButton("Gauche");
         boutonAllerAGauche.addActionListener(this);
+        boutonAllerAGauche.addKeyListener(this);
         this.add(boutonAllerAGauche);
 
+        fenetre.setFocusable(true);
+        fenetre.addKeyListener(this);
 
         fenetre.add(this);
-        fenetre.addKeyListener(this);
         this.maVoiture = maVoiture;
-    }
-
-
-    @Override
-    public void keyTyped(KeyEvent e) {
 
     }
 
-    @Override
-    public void keyPressed(KeyEvent keyEvent) {
-        System.out.println(keyEvent.getKeyCode());
-             if(keyEvent.getKeyCode()== KeyEvent.VK_SPACE)
-             {
-                 maVoiture.arretervoiture();
-                 System.out.println(maVoiture.getX()+"  "+maVoiture.getY());
-             }
-    }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-
+    public void nonFocus()
+    {
+        boutonAccelerer.setFocusable(false);
+        boutonInverserDirection.setFocusable(false);
+        boutonAllerADroite.setFocusable(false);
+        boutonAllerAGauche.setFocusable(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
         Object bouton = event.getSource();
-        if (bouton == boutonAccelerer)
+        if (bouton == boutonAccelerer) {
             maVoiture.accelerer();
-        else if(bouton == boutonInverserDirection)
+            nonFocus();}
+        else if(bouton == boutonInverserDirection) {
             maVoiture.inverserDirection();
-        else if(bouton == boutonAllerADroite)
+            nonFocus();}
+        else if(bouton == boutonAllerADroite) {
             maVoiture.allerADroite();
-        else if(bouton == boutonAllerAGauche)
+            nonFocus();}
+        else if(bouton == boutonAllerAGauche) {
             maVoiture.allerAGauche();
-
+            nonFocus();}
     }
 
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {}
 
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
+            maVoiture.arretervoiture();
+            System.out.println(maVoiture.getX() + "  " + maVoiture.getY());
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {}
 
 }
