@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+
+
 import DomaineVoiture.Voiture;
 
 public class IHMVoiture extends JFrame implements Observer{
@@ -20,13 +22,20 @@ public class IHMVoiture extends JFrame implements Observer{
     private CommandeVoiture maCommandeVoiture;
     private int pixelXCourant=0;
     private int pixelYCourant=300;
+    private IHMRoute maRoute;
+
 
     //TODO : utiliser un observer de la voiture pour les bords
     private void initGraphique() {
         this.setTitle("Simulateur de Voiture");
         this.setSize(505, 505);
 
+      // this.setLayout(new GridLayout(3,2));
+
         this.maCommandeVoiture = new CommandeVoiture(this, maVoiture);
+        this.maRoute=new IHMRoute(this);
+
+
         if(maVoiture.getY()==0)
         {
             maCommandeVoiture.boutonAllerAGauche.setEnabled(false);
@@ -37,12 +46,14 @@ public class IHMVoiture extends JFrame implements Observer{
         }
 
         this.setVisible(true);
+
     }
 
     public IHMVoiture(Voiture maVoiture) {
         super();
         this.maVoiture = maVoiture;
         maVoiture.addObserver(this);
+
         initGraphique();
     }
 

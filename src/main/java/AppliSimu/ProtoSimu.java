@@ -17,7 +17,6 @@ public class ProtoSimu {
 
 		final Voiture maVoiture = new Voiture (0,0, 10);
 		IHMVoiture monTriangle = new IHMVoiture(maVoiture);
-		
 		Timer timerAvancer = new Timer(dureeUneSecondeEnMilliSecondes, new ActionListener() {
 			
 			@Override

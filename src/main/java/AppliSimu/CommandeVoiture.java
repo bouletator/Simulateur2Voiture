@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import DomaineVoiture.Voiture;
+import org.omg.CORBA.PUBLIC_MEMBER;
 
 public class CommandeVoiture extends JPanel implements ActionListener,KeyListener{
 
@@ -22,10 +23,13 @@ public class CommandeVoiture extends JPanel implements ActionListener,KeyListene
 
         super();
 
+
+
         this.setLayout(new FlowLayout());
 
-        boutonAccelerer = new JButton("Accelerer");
+        this.setSize(505,70);
 
+        boutonAccelerer = new JButton("Accelerer");
         boutonAccelerer.addActionListener(this);
         boutonAccelerer.addKeyListener(this);
         this.add(boutonAccelerer);
@@ -52,7 +56,6 @@ public class CommandeVoiture extends JPanel implements ActionListener,KeyListene
         this.maVoiture = maVoiture;
 
     }
-
 
     public void nonFocus()
     {
