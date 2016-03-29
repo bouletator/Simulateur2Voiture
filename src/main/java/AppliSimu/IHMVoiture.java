@@ -94,6 +94,7 @@ public class IHMVoiture extends JFrame implements Observer{
         pixelXCourant=xPixel;
 
         contexteGraphique.fillRect(pixelXCourant, pixelYCourant, 30, 15);
+        System.out.println(maVoiture.getX()+"  "+maVoiture.getY());
     }
 
     private void dessinerVoiture2(Graphics contexteGraphique) {
@@ -102,6 +103,8 @@ public class IHMVoiture extends JFrame implements Observer{
         pixelYCourant=300 + yPixel;
         maCommandeVoiture.boutonAllerAGauche.setEnabled(true);
         contexteGraphique.fillRect(pixelXCourant, pixelYCourant, 15, 30);
+
+        System.out.println(maVoiture.getX() + "  " + maVoiture.getY());
     }
 
 

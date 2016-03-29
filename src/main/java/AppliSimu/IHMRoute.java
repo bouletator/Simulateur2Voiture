@@ -27,6 +27,12 @@ public class IHMRoute  extends JPanel{
     {
         super.paint(g);
         g.setColor(Color.black);
-        g.fillRect(0,250,50000,60);
+
+        g.fillRect(0,250,900,85);
+        g.fillRect(250,250,95,400);
+        g.fillRect(250,600,900,95);
+        g.fillRect(1100,50,95,645);
+
+
     }
 }
