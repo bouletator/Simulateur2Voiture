@@ -12,7 +12,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 
-
+import DomaineVoiture.Route;
 import DomaineVoiture.Voiture;
 
 public class IHMVoiture extends JFrame implements Observer{
@@ -22,19 +22,18 @@ public class IHMVoiture extends JFrame implements Observer{
     private CommandeVoiture maCommandeVoiture;
     private int pixelXCourant=0;
     private int pixelYCourant=300;
+    private Route[] routes;
     private IHMRoute maRoute;
-
 
     //TODO : utiliser un observer de la voiture pour les bords
     private void initGraphique() {
         this.setTitle("Simulateur de Voiture");
         this.setSize(505, 505);
 
-      // this.setLayout(new GridLayout(3,2));
+        //this.setLayout(null);
 
         this.maCommandeVoiture = new CommandeVoiture(this, maVoiture);
-        this.maRoute=new IHMRoute(this);
-
+        this.maRoute = new IHMRoute(this, routes);
 
         if(maVoiture.getY()==0)
         {
@@ -49,9 +48,10 @@ public class IHMVoiture extends JFrame implements Observer{
 
     }
 
-    public IHMVoiture(Voiture maVoiture) {
+    public IHMVoiture(Voiture maVoiture, Route ... r) {
         super();
         this.maVoiture = maVoiture;
+        this.routes = r;
         maVoiture.addObserver(this);
 
         initGraphique();
@@ -94,7 +94,6 @@ public class IHMVoiture extends JFrame implements Observer{
         pixelXCourant=xPixel;
 
         contexteGraphique.fillRect(pixelXCourant, pixelYCourant, 30, 15);
-        System.out.println(maVoiture.getX()+"  "+maVoiture.getY());
     }
 
     private void dessinerVoiture2(Graphics contexteGraphique) {
@@ -103,8 +102,6 @@ public class IHMVoiture extends JFrame implements Observer{
         pixelYCourant=300 + yPixel;
         maCommandeVoiture.boutonAllerAGauche.setEnabled(true);
         contexteGraphique.fillRect(pixelXCourant, pixelYCourant, 15, 30);
-
-        System.out.println(maVoiture.getX() + "  " + maVoiture.getY());
     }
 
 

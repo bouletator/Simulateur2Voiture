@@ -89,7 +89,6 @@ public class CommandeVoiture extends JPanel implements ActionListener,KeyListene
     public void keyPressed(KeyEvent keyEvent) {
         if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
             maVoiture.arretervoiture();
-            System.out.println(maVoiture.getX() + "  " + maVoiture.getY());
         }
     }
 
